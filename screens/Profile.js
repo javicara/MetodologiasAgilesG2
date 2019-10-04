@@ -122,7 +122,7 @@ class Profile extends React.Component {
                         fontSize: 16
                       }}
                     >
-                      Show more
+                      Ver Mas
                     </Button>
                   </Block>
                   <Block
@@ -142,7 +142,7 @@ class Profile extends React.Component {
                       color="transparent"
                       textStyle={{ color: "#5E72E4", fontSize: 12 }}
                     >
-                      View all
+                      Ver todo
                     </Button>
                   </Block>
                   <Block style={{ paddingBottom: -HeaderHeight * 2 }}>
