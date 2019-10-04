@@ -1,5 +1,5 @@
 node_modules/
-.expo/*
+.expo/
 npm-debug.*
 package-lock.json
 yarn.lock
@@ -7,4 +7,4 @@ yarn.lock
 *.p12
 *.key
 *.mobileprovision
-README.md
+
