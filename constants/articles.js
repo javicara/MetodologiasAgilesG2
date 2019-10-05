@@ -8,15 +8,15 @@ export default [
     price: 500
   },
   {
-    name: 'Santiago Gay',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3SotFNQ0rP5OZhrKhMVbcmOXClTFlWbUDX9SkfnqNkHQ-a55e',
+    name: 'Phill Collins',
+    image: 'https://s03.s3c.es/imag/_v0/770x420/7/6/f/GettyImages-522796439.jpg',
     origin: 'Lobos',
     destiny: 'Buenos Aires',
     price: 3500
   },
   {
-    name: 'Juancho Talarga',
-    image: 'https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80',
+    name: 'Armando Paredes',
+    image: 'https://definicionde.es/wp-content/uploads/2019/04/definicion-de-persona-min.jpg',
     origin: 'Gchu',
     destiny: 'La Plata',
     price: 1200
@@ -29,8 +29,8 @@ export default [
     price: 1500
   },
   {
-    name: 'Santi puto',
-    image: 'https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?fit=crop&w=1947&q=80',
+    name: 'Roberto Rodrigo',
+    image: 'http://cdn3.upsocl.com/wp-content/uploads/2014/08/Captura-de-pantalla-2014-08-01-a-las-15.33.07.jpg',
     origin: 'Alpargatas',
     destiny: 'La Plata',
     price: 2500
