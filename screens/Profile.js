@@ -19,6 +19,8 @@ const thumbMeasure = (width - 48 - 32) / 3;
 
 class Profile extends React.Component {
   render() {
+   // const {conductores} = this.props;
+
     return (
       <Block flex style={styles.profile}>
         <Block flex>
@@ -79,7 +81,7 @@ class Profile extends React.Component {
                       >
                         10
                       </Text>
-                      <Text size={12}>Fotos</Text>
+                      <Text size={12}>Viajes</Text>
                     </Block>
                     <Block middle>
                       <Text
@@ -97,7 +99,7 @@ class Profile extends React.Component {
                 <Block flex>
                   <Block middle style={styles.nameInfo}>
                     <Text bold size={28} color="#32325D">
-                      Santiago Esmoris, 27
+                      {conductores.name},{conductores.age}
                     </Text>
                     <Text size={16} color="#32325D" style={{ marginTop: 10 }}>
                       Gualeguaychu , Arg
