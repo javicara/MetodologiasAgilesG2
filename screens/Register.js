@@ -4,7 +4,8 @@ import {
   ImageBackground,
   Dimensions,
   StatusBar,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  ScrollView
 } from "react-native";
 import { Block, Checkbox, Text, theme } from "galio-framework";
 
@@ -18,6 +19,7 @@ class Register extends React.Component {
     return (
       <Block flex middle>
         <StatusBar hidden />
+        <ScrollView>
         <ImageBackground
           source={Images.RegisterBackground}
           style={{ width, height, zIndex: 1 }}
@@ -26,7 +28,7 @@ class Register extends React.Component {
             <Block style={styles.registerContainer}>
               <Block flex={0.25} middle style={styles.socialConnect}>
                 <Text color="#8898AA" size={12}>
-                  Sign up with
+                  Ingresar Con
                 </Text>
                 <Block row style={{ marginTop: theme.SIZES.BASE }}>
                   <Button style={{ ...styles.socialButtons, marginRight: 30 }}>
@@ -58,7 +60,7 @@ class Register extends React.Component {
               <Block flex>
                 <Block flex={0.17} middle>
                   <Text color="#8898AA" size={12}>
-                    Or sign up the classic way
+                    O Regristrarte con la forma Clasica
                   </Text>
                 </Block>
                 <Block flex center>
@@ -144,7 +146,7 @@ class Register extends React.Component {
                     <Block middle>
                       <Button color="primary" style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                          CREATE ACCOUNT
+                           Crear Cuenta
                         </Text>
                       </Button>
                     </Block>
@@ -154,6 +156,7 @@ class Register extends React.Component {
             </Block>
           </Block>
         </ImageBackground>
+        </ScrollView>
       </Block>
     );
   }

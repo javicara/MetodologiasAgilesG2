@@ -12,6 +12,7 @@ import { Block } from "galio-framework";
 import Home from "../screens/Home";
 import Onboarding from "../screens/Onboarding";
 import Pro from "../screens/Pro";
+import TarjetadeViaje from "../screens/TarjetadeViaje"
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
@@ -113,6 +114,15 @@ const HomeStack = createStackNavigator(
       screen: Home,
       navigationOptions: ({ navigation }) => ({
         header: <Header search options title="Home" navigation={navigation} />
+      })
+    },
+    TarjetadeViaje: {
+      screen: TarjetadeViaje,
+      navigationOptions: ({ navigation }) => ({
+        header: (
+          <Header left={<Block />} white transparent title="" navigation={navigation} />
+        ),
+        headerTransparent: true
       })
     },
     Pro: {

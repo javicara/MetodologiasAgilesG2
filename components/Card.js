@@ -10,30 +10,30 @@ import { argonTheme } from '../constants';
 class Card extends React.Component {
   render() {
     const { navigation, item, horizontal, full, style, ctaColor, imageStyle } = this.props;
-    
+
     const imageStyles = [
       full ? styles.fullImage : styles.horizontalImage,
       imageStyle
     ];
     const cardContainer = [styles.card, styles.shadow, style];
     const imgContainer = [styles.imageContainer,
-      horizontal ? styles.horizontalStyles : styles.verticalStyles,
-      styles.shadow
+    horizontal ? styles.horizontalStyles : styles.verticalStyles,
+    styles.shadow
     ];
 
     return (
       <Block row={horizontal} card flex style={cardContainer}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('TarjetadeViaje')}>
           <Block flex style={imgContainer}>
-            <Image source={{uri: item.image}} style={imageStyles} />
+            <Image source={{ uri: item.image }} style={imageStyles} />
           </Block>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('TarjetadeViaje')}>
           <Block flex space="between" style={styles.cardDescription}>
             <Text size={14} style={styles.cardName}>{item.name}</Text>
-	    <Text size={12}>${item.price}</Text>
-	    <Text size={12}>{item.origin} => {item.destiny}</Text>
-            <Text size={12} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold>Ver Viaje</Text>
+            <Text size={12}>${item.price}</Text>
+            <Text size={12}>{item.origin} To {item.destiny}</Text>
+            <Text size={12} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold>CASA</Text>
           </Block>
         </TouchableWithoutFeedback>
       </Block>
