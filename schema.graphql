@@ -1,0 +1,117 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Guriviajes {
+  autos: String
+  email: String!
+  image: String
+  name: String
+  viajes: AWSJSON
+}
+
+type GuriviajesConnection {
+  items: [Guriviajes]
+  nextToken: String
+}
+
+type Mutation {
+  createGuriviajes(input: CreateGuriviajesInput!): Guriviajes
+  deleteGuriviajes(input: DeleteGuriviajesInput!): Guriviajes
+  updateGuriviajes(input: UpdateGuriviajesInput!): Guriviajes
+}
+
+type Query {
+  getGuriviajes(email: String!): Guriviajes
+  listGuriviajes(filter: TableGuriviajesFilterInput, limit: Int, nextToken: String): GuriviajesConnection
+}
+
+type Subscription {
+  onCreateGuriviajes(autos: String, email: String, image: String, name: String, viajes: AWSJSON): Guriviajes @aws_subscribe(mutations : ["createGuriviajes"])
+  onDeleteGuriviajes(autos: String, email: String, image: String, name: String, viajes: AWSJSON): Guriviajes @aws_subscribe(mutations : ["deleteGuriviajes"])
+  onUpdateGuriviajes(autos: String, email: String, image: String, name: String, viajes: AWSJSON): Guriviajes @aws_subscribe(mutations : ["updateGuriviajes"])
+}
+
+input CreateGuriviajesInput {
+  autos: String
+  email: String!
+  image: String
+  name: String
+  viajes: AWSJSON
+}
+
+input DeleteGuriviajesInput {
+  email: String!
+}
+
+input TableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input TableFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input TableGuriviajesFilterInput {
+  autos: TableStringFilterInput
+  email: TableStringFilterInput
+  image: TableStringFilterInput
+  name: TableStringFilterInput
+}
+
+input TableIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input TableIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input TableStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input UpdateGuriviajesInput {
+  autos: String
+  email: String!
+  image: String
+  name: String
+  viajes: AWSJSON
+}
