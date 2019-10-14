@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "aws-amplify": "^1.2.2",
-    "aws-amplify-react-native": "^2.2.2",
     "expo": "^34.0.3",
     "expo-asset": "^6.0.0",
     "expo-font": "^6.0.1",
