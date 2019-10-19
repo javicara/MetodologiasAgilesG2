@@ -9,6 +9,9 @@ const ArgonLogo = require("../assets/imgs/argonlogo.png");
 const iOSLogo = require("../assets/imgs/ios.png");
 const androidLogo = require("../assets/imgs/android.png");
 // internet imgs
+const   maps = 'https://eldiariony.files.wordpress.com/2019/06/khalifa90.jpg?quality=60&strip=all&w=940'
+
+
 
 const ProfilePicture = 'https://pbs.twimg.com/profile_images/995311136391262209/5OqPB-QH_400x400.jpg';
 
@@ -37,5 +40,6 @@ export default {
   Pro,
   ArgonLogo,
   iOSLogo,
-  androidLogo
+  androidLogo,
+  maps
 };
