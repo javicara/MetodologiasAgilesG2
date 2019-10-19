@@ -26,20 +26,20 @@ export default class Pro extends React.Component {
               </Block>
               <Block >
                 <Block>
-                  <Text color="white" size={60}>Argon</Text>
+                  <Text color="white" size={60}>NEGRO</Text>
                 </Block>
                 <Block>
-                  <Text color="white" size={60}>Design</Text>
+                  <Text color="white" size={60}>xxxx</Text>
                 </Block>
                 <Block row>
-                  <Text color="white" size={60}>System</Text>
+                  <Text color="white" size={60}>PAPA</Text>
                   <Block middle style={styles.pro}>
                     <Text size={16} color="white">PRO</Text>
                   </Block>
                 </Block>
               </Block>
               <Text size={16} color='rgba(255,255,255,0.6)' style={{ marginTop: 35 }}>
-                Take advantage of all the features and screens made upon Galio Design System, coded on React Native for both.
+                Txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
               </Text>
               <Block row style={{ marginTop: theme.SIZES.BASE * 1.5, marginBottom: theme.SIZES.BASE * 4 }}>
                 <Image

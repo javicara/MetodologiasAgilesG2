@@ -8,6 +8,10 @@ const Pro = require("../assets/imgs/getPro-bg.png");
 const ArgonLogo = require("../assets/imgs/argonlogo.png");
 const iOSLogo = require("../assets/imgs/ios.png");
 const androidLogo = require("../assets/imgs/android.png");
+const fondotarjeta = require("../assets/imgs/guriviajes.jpg")
+const Logoviaje = require("../assets/imgs/viaje.png")
+const Mapa  = require("../assets/imgs/soyelmapa.png")
+
 // internet imgs
 
 const ProfilePicture = 'https://pbs.twimg.com/profile_images/995311136391262209/5OqPB-QH_400x400.jpg';
@@ -27,7 +31,9 @@ const Products = {
 
 export default {
   Onboarding,
+  Mapa,
   Logo,
+  Logoviaje,
   LogoOnboarding,
   ProfileBackground,
   ProfilePicture,
@@ -37,5 +43,7 @@ export default {
   Pro,
   ArgonLogo,
   iOSLogo,
+  fondotarjeta,
+  
   androidLogo
 };
