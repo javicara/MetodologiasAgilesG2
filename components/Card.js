@@ -8,9 +8,9 @@ import { argonTheme } from '../constants';
 
 
 class Card extends React.Component {
+
   render() {
     const { navigation, item, horizontal, full, style, ctaColor, imageStyle } = this.props;
-
     const imageStyles = [
       full ? styles.fullImage : styles.horizontalImage,
       imageStyle
@@ -24,15 +24,15 @@ class Card extends React.Component {
     return (
       <Block row={horizontal} card flex style={cardContainer}>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('TarjetadeViaje')}>
-          <Block flex style={imgContainer}>
+          {/* <Block flex style={imgContainer}>
             <Image source={{ uri: item.image }} style={imageStyles} />
-          </Block>
+          </Block> */}
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('TarjetadeViaje')}>
           <Block flex space="between" style={styles.cardDescription}>
-            <Text size={14} style={styles.cardName}>{item.name}</Text>
-            <Text size={12}>${item.price}</Text>
-            <Text size={12}>{item.origin} To {item.destiny}</Text>
+            <Text size={14} style={styles.cardName}>{item.fecha}</Text>
+            <Text size={12}>{item.precio}</Text>
+            <Text size={12}>{item.origen} To {item.destino}</Text>
             <Text size={12} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold>CASA</Text>
           </Block>
         </TouchableWithoutFeedback>
