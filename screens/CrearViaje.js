@@ -5,14 +5,18 @@ import { Block, Text, Button as GaButton, theme } from "galio-framework";
 // Argon themed components
 import { argonTheme, tabs } from "../constants/";
 import { Button, Select, Icon, Input, Header, Switch } from "../components/";
-
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import awsconfig from '../src/aws-exports (1)';
+import * as queries from '../src/graphql/queries';
+import * as mutations from '../src/graphql/mutations';
+Amplify.configure(awsconfig);
 const viajes = require('../constants/articles.json')
 
 
 
 const { width } = Dimensions.get("screen");
 
-
+ 
 
 class CrearViaje extends React.Component {
   state = {
@@ -28,6 +32,16 @@ class CrearViaje extends React.Component {
     "switch-2": false,
   };
 
+   crearviaje = (newViaje) => {
+    API.graphql(graphqlOperation(mutations.createGuriviajes, { input: newViaje })).then(res => {
+      console.log(res);
+    });
+  }
+
+   
+
+   
+  
   setDate = (event, date) => {
     date = date || this.state.date;
 
@@ -55,378 +69,7 @@ class CrearViaje extends React.Component {
   toggleSwitch = switchId =>
     this.setState({ [switchId]: !this.state[switchId] });
 
-  renderButtons = () => {
-    return (
-      <Block flex>
-        <Text bold size={16} style={styles.title}>
-          Buttons
-        </Text>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Block center>
-            <Button color="default" style={styles.button}>
-              DEFAULT
-            </Button>
-          </Block>
-          <Block center>
-            <Button
-              color="secondary"
-              textStyle={{ color: "black", fontSize: 12, fontWeight: "700" }}
-              style={styles.button}
-            >
-              SECONDARY
-            </Button>
-          </Block>
-          <Block center>
-            <Button style={styles.button}>PRIMARY</Button>
-          </Block>
-          <Block center>
-            <Button color="info" style={styles.button}>
-              INFO
-            </Button>
-          </Block>
-          <Block center>
-            <Button color="success" style={styles.button}>
-              SUCCESS
-            </Button>
-          </Block>
-          <Block center>
-            <Button color="warning" style={styles.button}>
-              WARNING
-            </Button>
-          </Block>
-          <Block center>
-            <Button color="error" style={styles.button}>
-              ERROR
-            </Button>
-          </Block>
-          <Block row space="evenly">
-            <Block flex left>
-              <Select
-                defaultIndex={1}
-                options={["01", "02", "03", "04", "05"]}
-              />
-            </Block>
-            <Block flex center>
-              <Button small center color="default" style={styles.optionsButton}>
-                DELETE
-              </Button>
-            </Block>
-            <Block flex={1.25} right>
-              <Button center color="default" style={styles.optionsButton}>
-                SAVE FOR LATER
-              </Button>
-            </Block>
-          </Block>
-        </Block>
-      </Block>
-    );
-  };
-
-  renderText = () => {
-    return (
-      <Block flex style={styles.group}>
-        <Text bold size={16} style={styles.title}>
-          Typography
-        </Text>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Text
-            h1
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Heading 1
-          </Text>
-          <Text
-            h2
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Heading 2
-          </Text>
-          <Text
-            h3
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Heading 3
-          </Text>
-          <Text
-            h4
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Heading 4
-          </Text>
-          <Text
-            h5
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Heading 5
-          </Text>
-          <Text
-            p
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Paragraph
-          </Text>
-          <Text muted>This is a muted paragraph.</Text>
-        </Block>
-      </Block>
-    );
-  };
-
-  renderInputs = () => {
-    return (
-      <Block flex style={styles.group}>
-        <Text bold size={16} style={styles.title}>
-          Inputs
-        </Text>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Input right placeholder="Regular" iconContent={<Block />} />
-        </Block>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Input
-            right
-            placeholder="Regular Custom"
-            style={{
-              borderColor: argonTheme.COLORS.INFO,
-              borderRadius: 4,
-              backgroundColor: "#fff"
-            }}
-            iconContent={<Block />}
-          />
-        </Block>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Input
-            placeholder="Icon left"
-            iconContent={
-              <Icon
-                size={11}
-                style={{ marginRight: 10 }}
-                color={argonTheme.COLORS.ICON}
-                name="search-zoom-in"
-                family="ArgonExtra"
-              />
-            }
-          />
-        </Block>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Input
-            right
-            placeholder="Icon Right"
-            iconContent={
-              <Icon
-                size={11}
-                color={argonTheme.COLORS.ICON}
-                name="search-zoom-in"
-                family="ArgonExtra"
-              />
-            }
-          />
-        </Block>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Input
-            success
-            right
-            placeholder="Success"
-            iconContent={
-              <Block
-                middle
-                style={{
-                  width: 20,
-                  height: 20,
-                  borderRadius: 10,
-                  backgroundColor: argonTheme.COLORS.INPUT_SUCCESS
-                }}
-              >
-                <Icon
-                  size={11}
-                  color={argonTheme.COLORS.ICON}
-                  name="g-check"
-                  family="ArgonExtra"
-                />
-              </Block>
-            }
-          />
-        </Block>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Input
-            error
-            right
-            placeholder="Error Input"
-            iconContent={
-              <Block
-                middle
-                style={{
-                  width: 20,
-                  height: 20,
-                  borderRadius: 10,
-                  backgroundColor: argonTheme.COLORS.INPUT_ERROR
-                }}
-              >
-                <Icon
-                  size={11}
-                  color={argonTheme.COLORS.ICON}
-                  name="support"
-                  family="ArgonExtra"
-                />
-              </Block>
-            }
-          />
-        </Block>
-      </Block>
-    );
-  };
-
-  renderSwitches = () => {
-    return (
-      <Block flex style={styles.group}>
-        <Text bold size={16} style={styles.title}>
-          Switches
-        </Text>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Block
-            row
-            middle
-            space="between"
-            style={{ marginBottom: theme.SIZES.BASE }}
-          >
-            <Text size={14}>Switch is ON</Text>
-            <Switch
-              value={this.state["switch-1"]}
-              onValueChange={() => this.toggleSwitch("switch-1")}
-            />
-          </Block>
-          <Block row middle space="between">
-            <Text size={14}>Switch is OFF</Text>
-            <Switch
-              value={this.state["switch-2"]}
-              onValueChange={() => this.toggleSwitch("switch-2")}
-            />
-          </Block>
-        </Block>
-      </Block>
-    );
-  };
-
-  renderTableCell = () => {
-    const { navigation } = this.props;
-    return (
-      <Block flex style={styles.group}>
-        <Text bold size={16} style={styles.title}>
-          Table Cell
-        </Text>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Block style={styles.rows}>
-            <TouchableOpacity onPress={() => navigation.navigate("Pro")}>
-              <Block row middle space="between" style={{ paddingTop: 7 }}>
-                <Text size={14}>Manage Options</Text>
-                <Icon
-                  name="chevron-right"
-                  family="entypo"
-                  style={{ paddingRight: 5 }}
-                />
-              </Block>
-            </TouchableOpacity>
-          </Block>
-        </Block>
-      </Block>
-    );
-  };
-
-  renderSocial = () => {
-    return (
-      <Block flex style={styles.group}>
-        <Text bold size={16} style={styles.title}>
-          Social
-        </Text>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Block row center space="between">
-            <Block flex middle right>
-              <GaButton
-                round
-                onlyIcon
-                shadowless
-                icon="facebook"
-                iconFamily="Font-Awesome"
-                iconColor={theme.COLORS.WHITE}
-                iconSize={theme.SIZES.BASE * 1.625}
-                color={theme.COLORS.FACEBOOK}
-                style={[styles.social, styles.shadow]}
-              />
-            </Block>
-            <Block flex middle center>
-              <GaButton
-                round
-                onlyIcon
-                shadowless
-                icon="twitter"
-                iconFamily="Font-Awesome"
-                iconColor={theme.COLORS.WHITE}
-                iconSize={theme.SIZES.BASE * 1.625}
-                color={theme.COLORS.TWITTER}
-                style={[styles.social, styles.shadow]}
-              />
-            </Block>
-            <Block flex middle left>
-              <GaButton
-                round
-                onlyIcon
-                shadowless
-                icon="dribbble"
-                iconFamily="Font-Awesome"
-                iconColor={theme.COLORS.WHITE}
-                iconSize={theme.SIZES.BASE * 1.625}
-                color={theme.COLORS.DRIBBBLE}
-                style={[styles.social, styles.shadow]}
-              />
-            </Block>
-          </Block>
-        </Block>
-      </Block>
-    );
-  };
-
-  renderNavigation = () => {
-    return (
-      <Block flex style={styles.group}>
-        <Text bold size={16} style={styles.title}>
-          Navigation
-        </Text>
-        <Block>
-          <Block style={{ marginBottom: theme.SIZES.BASE }}>
-            <Header back title="Title" navigation={this.props.navigation} />
-          </Block>
-
-          <Block style={{ marginBottom: theme.SIZES.BASE }}>
-            <Header white back title="Title" navigation={this.props.navigation} bgColor={argonTheme.COLORS.ACTIVE} titleColor="white" iconColor="white" />
-          </Block>
-
-          <Block style={{ marginBottom: theme.SIZES.BASE }}>
-            <Header search title="Title" navigation={this.props.navigation} />
-          </Block>
-
-          <Block style={{ marginBottom: theme.SIZES.BASE }}>
-            <Header tabs={tabs.categories} search title="Title" navigation={this.props.navigation} />
-          </Block>
-
-          <Block style={{ marginBottom: theme.SIZES.BASE }}>
-            <Header
-              options
-              search
-              title="Title"
-              optionLeft="Option 1"
-              optionRight="Option 2"
-              navigation={this.props.navigation}
-            />
-          </Block>
-        </Block>
-      </Block>
-    );
-  };
-
+  
   renderCrearViaje = () => {
 
     const { show, date, mode } = this.state;
@@ -493,7 +136,7 @@ class CrearViaje extends React.Component {
         </Block>
 
         <Block center>
-            <Button color="success" style={styles.button} onPress={this.onSave}>
+            <Button color="success" style={styles.button} onPress={()=>this.onSave(navigation)}>
               Guardar Viaje
             </Button>
         </Block>
@@ -505,28 +148,57 @@ class CrearViaje extends React.Component {
     );
   };
 
-  onSave = () => {
-    if ((this.state.dia !== '') || (this.state.mes !== '') || (this.state.anio !== '') || (this.state.destino !== '') || (this.state.origen !== '') || (this.state.duracion !== '') || (this.state.precio !== '') || (this.state.espacios)){
 
-      var viaje = { dia: this.state.dia,
-        mes: this.state.mes,
-        anio: this.state.anio,
-        espacios:this.state.espacios,
-        precio: this.state.precio,
-        origen: this.state.origen,
-        destino: this.state.destino,
-        duracion: this.state.duracion
+
+    
+  
+
+
+  onSave = (navigation) => {
+    //if ((this.state.dia !== '') || (this.state.mes !== '') || (this.state.anio !== '') || (this.state.destino !== '') || (this.state.origen !== '') || (this.state.duracion !== '') || (this.state.precio !== '') || (this.state.espacios)){
+
+      var viaje = {email:"johnlenno@gmail.com",
+                  autos:"nop",
+                  name:"John Lennon",
+                  image:"https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2017/05/10/14944031656984.jpg",
+
+        
+        
+                       viajes:JSON.stringify([{ dia: this.state.dia,
+                          mes: this.state.mes,
+                          anio: this.state.anio,
+                          espacios:this.state.espacios,
+                          precio: this.state.precio, 
+                          origen: this.state.origen,
+                          destino: this.state.destino,
+                          duracion: this.state.duracion}])
+                
+                          // viajes:JSON.stringify([{ dia:"12",
+                          //   mes: "2",
+                          //   anio: "1997",
+                          //   espacios:"2",
+                          //   precio: "800", 
+                          //   origen: "el palomar",
+                          //   destino: "a tu casa",
+                          //   duracion: "infiinita"}])
       }; 
   
-      var viajeJson = JSON.stringify(viaje);
-  
+      var viajeJson = viaje;
+
+      
+ 
+      
       console.log(viajeJson);
+ 
+     this.crearviaje(viajeJson);
+     navigation.navigate('Home');
+     
 
     }
+  
 
 
-
-  }
+ // }
 
 
 
@@ -601,3 +273,4 @@ const styles = StyleSheet.create({
 });
 
 export default CrearViaje;
+ 

@@ -3,13 +3,13 @@ import { StyleSheet, Dimensions, ScrollView, FlatList } from 'react-native';
 import { Block, theme } from 'galio-framework';
 
 import { Card } from '../components';
-
-const articles = require('../constants/articles.json')
-//import articles from '../constants/articles';
+import articles from '../constants/articles';
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import awsconfig from '../src/aws-exports (1)';
 import * as queries from '../src/graphql/queries';
-import * as mutations from '../src/graphql/mutations';
+import * as subscriptions from '../src/graphql/subscriptions';
+
+import { apisAreAvailable } from 'expo';
 
 Amplify.configure(awsconfig);
 
@@ -29,12 +29,80 @@ function viajesconductor(email){
   
   }
 
-  viajesconductor('javicara@gmail.com');  
+  const viajes = (setState)=> {
+    API.graphql(graphqlOperation(queries.listGuriviajes)).then(res => {
+      //console.log(res);
+      let array = res.data.listGuriviajes.items
+  
+//      console.log(JSON.stringify(array))
+    const caca=array.map(x => (
+      JSON.parse(x.viajes).map(data =>({
+        email:x.email,
+        nombre:x.name,
+        image:x.image,
+        origen:data.origen,
+        destino:data.destino,
+        fecha:data.fecha,
+        precio:data.precio,
+        celular:2213142511
+        
+      }))
+  
+    ))
+  
+    var merge = [].concat.apply([],caca)
+    
+    //console.log(merge);
+    console.log(articles)
+    setState({viajes:merge});
+     
+    });
+  
+  }
+  //viajesconductor('javicara@gmail.com');  
+
+
+
+
 const { width } = Dimensions.get('screen');
 
 class Home extends React.Component {
+  state= { 
+    viajes:[]
+  } 
+  
+  componentDidMount(){
+    // viajes(this.setState)
+  //  API.graphql(graphqlOperation())
+
+    API.graphql(graphqlOperation(queries.listGuriviajes)).then(res => {
+      //console.log(res);
+      let array = res.data.listGuriviajes.items
+  
+//      console.log(JSON.stringify(array))
+    const caca=array.map(x => (
+      JSON.parse(x.viajes).map(data =>({
+        email:x.email,
+        nombre:x.name,
+        image:x.image,
+        origen:data.origen,
+        destino:data.destino,
+        fecha:data.fecha,
+        precio:data.precio
+        
+      }))
+  
+    ))
+  
+    var merge = [].concat.apply([],caca)
+
+    this.setState({viajes:merge});
+  }
+    )}
+
+
   renderArticles = () => {
-    console.log('caca');
+    
   
     return (
       <ScrollView
@@ -42,7 +110,7 @@ class Home extends React.Component {
         contentContainerStyle={styles.articles}>
          <Block flex>
           <FlatList
-            data={articles}
+            data={this.state.viajes}
             showsVerticalScrollIndicator={false}
             renderItem={({item}) =>
             <Block flex row>
@@ -64,7 +132,8 @@ class Home extends React.Component {
       </Block>
     );
   }
-}
+} 
+   
 
 const styles = StyleSheet.create({
   home: {
