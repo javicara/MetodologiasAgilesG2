@@ -130,6 +130,12 @@ const HomeStack = createStackNavigator(
         headerTransparent: true
       })
     },
+CrearViaje: {
+      screen: CrearViaje,
+      navigationOptions: ({ navigation }) => ({
+        header: <Header options title="Crear Viaje" navigation={navigation} />
+      })
+    },
     Tarjetadeviaje: {
       screen: Tarjetadeviaje,
       navigationOptions: ({ navigation }) => ({
