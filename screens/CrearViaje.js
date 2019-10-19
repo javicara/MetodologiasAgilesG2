@@ -155,12 +155,12 @@ class CrearViaje extends React.Component {
 
 
   onSave = (navigation) => {
-    //if ((this.state.dia !== '') || (this.state.mes !== '') || (this.state.anio !== '') || (this.state.destino !== '') || (this.state.origen !== '') || (this.state.duracion !== '') || (this.state.precio !== '') || (this.state.espacios)){
+    if ((this.state.dia !== '') || (this.state.mes !== '') || (this.state.anio !== '') || (this.state.destino !== '') || (this.state.origen !== '') || (this.state.duracion !== '') || (this.state.precio !== '') || (this.state.espacios)){
 
-      var viaje = {email:"johnlenno@gmail.com",
+      var viaje = {email:Math.random(),
                   autos:"nop",
-                  name:"John Lennon",
-                  image:"https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2017/05/10/14944031656984.jpg",
+                  name:"Santiago Esmoris",
+                  image:"https://www.buenosaires.gob.ar/sites/gcaba/files/field/image/catedral_a_parque_patricios.jpg",
 
         
         
@@ -171,7 +171,9 @@ class CrearViaje extends React.Component {
                           precio: this.state.precio, 
                           origen: this.state.origen,
                           destino: this.state.destino,
-                          duracion: this.state.duracion}])
+                          duracion: this.state.duracion,
+                          fecha:"13/12/2019"
+                          }])
                 
                           // viajes:JSON.stringify([{ dia:"12",
                           //   mes: "2",
@@ -188,7 +190,7 @@ class CrearViaje extends React.Component {
       
  
       
-      console.log(viajeJson);
+     // console.log(viajeJson);
  
      this.crearviaje(viajeJson);
      navigation.navigate('Home');
@@ -198,7 +200,7 @@ class CrearViaje extends React.Component {
   
 
 
- // }
+ }
 
 
 
@@ -223,7 +225,7 @@ const styles = StyleSheet.create({
   group: {
     paddingTop: theme.SIZES.BASE * 2
   },
-  shadow: {
+  shadow: {  
     shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,

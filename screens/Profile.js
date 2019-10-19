@@ -1,5 +1,10 @@
 import React from "react";
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import awsconfig from '../src/aws-exports (1)';
+import * as queries from '../src/graphql/queries';
+import { Card } from '../components';
 import {
+  FlatList,
   StyleSheet,
   Dimensions,
   ScrollView,
@@ -13,12 +18,34 @@ import { Button } from "../components";
 import { Images, argonTheme } from "../constants";
 import { HeaderHeight } from "../constants/utils";
 
+Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("screen");
 
 const thumbMeasure = (width - 48 - 32) / 3;
 
+
+function viajesconductor(email) {
+ 
+
+}
+
+
 class Profile extends React.Component {
+
+  state = {
+    viajes: []
+  }
+  componentDidMount() {
+    API.graphql(graphqlOperation(queries.getGuriviajes, { email: "javicara@gmail.com" })).then(res => {
+      //console.log(res);
+      //console.log('holas');
+      let viajess = JSON.parse(res.data.getGuriviajes.viajes);
+      this.setState({ viajes: viajess })
+      
+    });
+  }
   render() {
+
     return (
       <Block flex style={styles.profile}>
         <Block flex>
@@ -112,7 +139,7 @@ class Profile extends React.Component {
                       color="#525F7F"
                       style={{ textAlign: "center" }}
                     >
-                      Estudiante de ingenieria en sistemas de la UTN, me gusta mucho viajar y creer FIRMEMEMENTE EN DIOS
+                      Estudiante de ingenieria en sistemas de la UTN, me gusta mucho viajar
                     </Text>
                     <Button
                       color="transparent"
@@ -130,7 +157,7 @@ class Profile extends React.Component {
                     style={{ paddingVertical: 14, alignItems: "baseline" }}
                   >
                     <Text bold size={16} color="#525F7F">
-                      Album
+                      Viajes
                     </Text>
                   </Block>
                   <Block
@@ -145,18 +172,16 @@ class Profile extends React.Component {
                       Ver todo
                     </Button>
                   </Block>
-                  <Block style={{ paddingBottom: -HeaderHeight * 2 }}>
-                    <Block row space="between" style={{ flexWrap: "wrap" }}>
-                      {Images.Viewed.map((img, imgIndex) => (
-                        <Image
-                          source={{ uri: img }}
-                          key={`viewed-${img}`}
-                          resizeMode="cover"
-                          style={styles.thumb}
-                        />
-                      ))}
-                    </Block>
-                  </Block>
+                  <FlatList
+                    data={this.state.viajes}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({ item }) =>
+                      <Block flex row>
+                        <Card item={item} horizontal />
+                      </Block>
+                    }
+                    keyExtractor={(item, index) => index.toString()}
+                  />
                 </Block>
               </Block>
             </ScrollView>

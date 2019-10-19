@@ -1,20 +1,8 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateGuriviajes = `subscription OnCreateGuriviajes(
-  $autos: String
-  $email: String
-  $image: String
-  $name: String
-  $viajes: AWSJSON
-) {
-  onCreateGuriviajes(
-    autos: $autos
-    email: $email
-    image: $image
-    name: $name
-    viajes: $viajes
-  ) {
+export const onCreateGuriviajes = `subscription OnCreateGuriviajes {
+  onCreateGuriviajes{
     autos
     email
     image
