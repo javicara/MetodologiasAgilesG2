@@ -3,7 +3,9 @@ import { StyleSheet, Dimensions, ScrollView, FlatList } from 'react-native';
 import { Block, theme } from 'galio-framework';
 
 import { Card } from '../components';
-import articles from '../constants/articles';
+
+const articles = require('../constants/articles.json')
+//import articles from '../constants/articles';
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import awsconfig from '../src/aws-exports (1)';
 import * as queries from '../src/graphql/queries';

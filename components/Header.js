@@ -22,9 +22,9 @@ const BellButton = ({isWhite, style, navigation}) => (
     <Block middle style={styles.notify} />
   </TouchableOpacity>
 );
-
+//Este es el Add
 const BasketButton = ({isWhite, style, navigation}) => (
-  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
+  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('CrearViaje')}>
     <Icon
       family="ArgonExtra"
       size={16}

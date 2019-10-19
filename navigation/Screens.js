@@ -16,6 +16,7 @@ import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
+import CrearViaje from "../screens/CrearViaje";
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -107,6 +108,8 @@ const ProfileStack = createStackNavigator(
   }
 );
 
+
+
 const HomeStack = createStackNavigator(
   {
     Home: {
@@ -122,6 +125,12 @@ const HomeStack = createStackNavigator(
           <Header left={<Block />} white transparent title="" navigation={navigation} />
         ),
         headerTransparent: true
+      })
+    },
+    CrearViaje: {
+      screen: CrearViaje,
+      navigationOptions: ({ navigation }) => ({
+        header: <Header options title="Crear Viaje" navigation={navigation} />
       })
     }
   },
