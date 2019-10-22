@@ -95,7 +95,7 @@ class Profile extends React.Component {
                       >
                         2K
                       </Text>
-                      <Text size={12}>Viajes Cconcretados</Text>
+                      <Text size={12}>Viajes Concretados</Text>
                     </Block>
                     <Block middle>
                       <Text

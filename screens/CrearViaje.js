@@ -73,31 +73,31 @@ class CrearViaje extends React.Component {
   renderCrearViaje = () => {
 
     const { show, date, mode } = this.state;
-    
-    
+
+
     const { navigation } = this.props;
 
 
     return (
       <Block flex style={styles.group}>
         <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Input right placeholder="Origen"  iconContent={<Block />} onChangeText={(origen) => this.setState({origen})}  value={this.state.origen} />
+          <Input right placeholder="Origen" iconContent={<Block />} onChangeText={(origen) => this.setState({ origen })} value={this.state.origen} />
         </Block>
         <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Input right placeholder="Destino" iconContent={<Block />}  onChangeText={(destino) => this.setState({destino})}  value={this.state.destino}/>
+          <Input right placeholder="Destino" iconContent={<Block />} onChangeText={(destino) => this.setState({ destino })} value={this.state.destino} />
         </Block>
         <Block style={{ paddingHorizontal: theme.SIZES.BASE }} >
-          <Input right placeholder="Precio" iconContent={<Block />} onChangeText={(precio) => this.setState({precio})}  value={this.state.precio}/>
+          <Input right placeholder="Precio" iconContent={<Block />} onChangeText={(precio) => this.setState({ precio })} value={this.state.precio} />
         </Block>
         <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Input right placeholder="Duracion" iconContent={<Block />} onChangeText={(duracion) => this.setState({duracion})}  value={this.state.duracion}/>
+          <Input right placeholder="Duracion" iconContent={<Block />} onChangeText={(duracion) => this.setState({ duracion })} value={this.state.duracion} />
         </Block>
 
         <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Input right placeholder="Espacios Disponibles" iconContent={<Block />} onChangeText={(espacios) => this.setState({espacios})}  value={this.state.espacios}/>
+          <Input right placeholder="Espacios Disponibles" iconContent={<Block />} onChangeText={(espacios) => this.setState({ espacios })} value={this.state.espacios} />
         </Block>
 
-{/*         <Block space="evenly">
+        {/*         <Block space="evenly">
           <Block flex top>
             <Text
               p
@@ -119,25 +119,30 @@ class CrearViaje extends React.Component {
 
         <Block row space="around">
           <Block flex left>
-            <Input right placeholder="Dia" iconContent={<Block />} onChangeText={(dia) => this.setState({dia})}  value={this.state.dia} />
+            <Input right placeholder="Dia" iconContent={<Block />} onChangeText={(dia) => this.setState({ dia })} value={this.state.dia} />
           </Block>
           <Block flex center>
-            <Input right placeholder="Mes" iconContent={<Block />} onChangeText={(mes) => this.setState({mes})}  value={this.state.mes}/>
+            <Input right placeholder="Mes" iconContent={<Block />} onChangeText={(mes) => this.setState({ mes })} value={this.state.mes} />
           </Block>
           <Block flex right>
-            <Input right placeholder="Año" iconContent={<Block />} onChangeText={(anio) => this.setState({anio})}  value={this.state.anio}/>
+            <Input right placeholder="Año" iconContent={<Block />} onChangeText={(anio) => this.setState({ anio })} value={this.state.anio} />
           </Block>
         </Block>
 
         <Block center>
-            <Button color="error" style={styles.button} onPress={() => navigation.navigate('Home')}>
-              Cancelar
+          <Button color="error" style={styles.button} onPress={() => navigation.goBack()}>
+            Cancelar
             </Button>
         </Block>
 
         <Block center>
+<<<<<<< HEAD
             <Button color="success" style={styles.button} onPress={()=>this.onSave(navigation)}>
               Guardar Viaje
+=======
+          <Button color="success" style={styles.button} onPress={this.onSave}>
+            Guardar Viaje
+>>>>>>> 77884619a9454bfa606bf283dd7d53d5be6021b3
             </Button>
         </Block>
 
@@ -149,6 +154,7 @@ class CrearViaje extends React.Component {
   };
 
 
+<<<<<<< HEAD
 
     
   
@@ -195,6 +201,37 @@ class CrearViaje extends React.Component {
      this.crearviaje(viajeJson);
      navigation.navigate('Home');
      
+=======
+  onCancel = () => {
+    () => navigation.goBack();
+  }
+
+  onSave = () => {
+    if ((this.state.dia !== '') || (this.state.mes !== '') || (this.state.anio !== '') || (this.state.destino !== '') || (this.state.origen !== '') || (this.state.duracion !== '') || (this.state.precio !== '') || (this.state.espacios)) {
+
+      var viaje = {
+        dia: this.state.dia,
+        mes: this.state.mes,
+        anio: this.state.anio,
+        espacios: this.state.espacios,
+        precio: this.state.precio,
+        origen: this.state.origen,
+        destino: this.state.destino,
+        duracion: this.state.duracion
+      };
+
+      var viajeJson = JSON.stringify(viaje);
+
+      console.log(viajeJson);
+
+      this.props.navigation.goBack();
+
+
+    }
+    else {
+      Alert.alert('Faltan campos para crear viaje');
+    }
+>>>>>>> 77884619a9454bfa606bf283dd7d53d5be6021b3
 
     }
   
