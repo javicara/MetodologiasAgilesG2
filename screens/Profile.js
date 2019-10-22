@@ -25,7 +25,7 @@ const thumbMeasure = (width - 48 - 32) / 3;
 
 
 function viajesconductor(email) {
- 
+
 
 }
 
@@ -41,7 +41,7 @@ class Profile extends React.Component {
       //console.log('holas');
       let viajess = JSON.parse(res.data.getGuriviajes.viajes);
       this.setState({ viajes: viajess })
-      
+
     });
   }
   render() {
@@ -171,17 +171,20 @@ class Profile extends React.Component {
                     >
                       Ver todo
                     </Button>
+
                   </Block>
-                  <FlatList
-                    data={this.state.viajes}
-                    showsVerticalScrollIndicator={false}
-                    renderItem={({ item }) =>
-                      <Block flex row>
-                        <Card item={item} horizontal />
-                      </Block>
-                    }
-                    keyExtractor={(item, index) => index.toString()}
-                  />
+                  <Block flex>
+                    <FlatList
+                      data={this.state.viajes}
+                      showsVerticalScrollIndicator={false}
+                      renderItem={({ item }) =>
+                        <Block flex row>
+                          <Card item={item} horizontal />
+                        </Block>
+                      }
+                      keyExtractor={(item, index) => index.toString()}
+                    />
+                  </Block>
                 </Block>
               </Block>
             </ScrollView>
