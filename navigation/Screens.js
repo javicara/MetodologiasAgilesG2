@@ -17,6 +17,7 @@ import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
 
+
 import CrearViaje from "../screens/CrearViaje";
 
 import Tarjetadeviaje from "../screens/Tarjetadeviaje";
@@ -155,7 +156,7 @@ CrearViaje: {
 );
 // divideru se baga ca si cum ar fi un ecrna dar nu-i nimic duh
 const AppStack = createDrawerNavigator(
-  {
+  {//Ventanas al costado
     Onboarding: {
       screen: Onboarding,
       navigationOptions: {
@@ -175,6 +176,14 @@ const AppStack = createDrawerNavigator(
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
           <DrawerItem focused={focused} screen="Profile" title="Profile" />
+        )
+      })
+    },
+    Register: {
+      screen: Register,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="Register" title="Register" />
         )
       })
     },
