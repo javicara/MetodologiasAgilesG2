@@ -28,7 +28,7 @@ class DrawerItem extends React.Component {
             color={focused ? "white" : argonTheme.COLORS.ICON}
           />
         );
-      case "Register":
+      case "LogIn/SignUp":
         return (
           <Icon
             name="user-plus"

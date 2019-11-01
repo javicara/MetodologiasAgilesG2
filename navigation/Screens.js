@@ -13,7 +13,8 @@ import Home from "../screens/Home";
 import Onboarding from "../screens/Onboarding";
 import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
-import Register from "../screens/Register";
+import SignUp from "../screens/SignUp";
+import LogIn from "../screens/LogIn";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
 
@@ -114,8 +115,39 @@ const ProfileStack = createStackNavigator(
 
 
 
-const HomeStack = createStackNavigator(
+
+const LogInStack = createStackNavigator(
   {
+    LogIn: {
+      screen: LogIn,
+      navigationOptions: ({ navigation }) => ({
+        header: (
+          <Header white transparent title="LogIn" iconColor={'#FFF'} navigation={navigation} />
+        ),
+        headerTransparent: true
+      })
+    },
+    SignUp: {
+      screen: SignUp,
+      navigationOptions: ({ navigation }) => ({
+        header: (
+          <Header white transparent title="SignUp" iconColor={'#FFF'} navigation={navigation} />
+        ),
+        headerTransparent: true
+      })
+    }
+  },
+  {
+    cardStyle: { backgroundColor: "#FFFFFF" },
+    transitionConfig
+  }
+);
+
+
+
+
+const HomeStack = createStackNavigator(
+  {//Pantallas que maneja la Home
     Home: {
       screen: Home,
       navigationOptions: ({ navigation }) => ({
@@ -179,19 +211,19 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Register: {
-      screen: Register,
+    LogIn: {
+      screen: LogInStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Register" title="Register" />
+          <DrawerItem focused={focused} screen="LogIn" title="LogIn/SignUp" />
         )
       })
     },
-    Account: {
-      screen: Register,
+/*     Account: {
+      screen: SignUp,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Register" title="Account" />
+          <DrawerItem focused={focused} screen="SignUp" title="Account" />
         )
       })
     },
@@ -210,7 +242,7 @@ const AppStack = createDrawerNavigator(
           <DrawerItem focused={focused} screen="Articles" title="Articles" />
         )
       })
-    }
+    } */
   },
   Menu
 );

@@ -1,4 +1,6 @@
 import React from "react";
+import { withNavigation } from 'react-navigation';
+
 import {
   StyleSheet,
   ImageBackground,
@@ -14,8 +16,11 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("screen");
 
-class Register extends React.Component {
+class SignUp extends React.Component {
   render() {
+
+    const { navigation } = this.props;
+
     return (
       <Block flex middle>
         <StatusBar hidden />
@@ -192,6 +197,18 @@ class Register extends React.Component {
                         </Text>
                         </Button>
                       </Block>
+
+                      <Block center row style={styles.passwordCheck}>
+                        <Text size={12} color={argonTheme.COLORS.MUTED}>
+                          Guri con cuenta?
+                        </Text>
+                        <Text bold size={12} color={argonTheme.COLORS.BLUE} onPress={() => navigation.goBack()}>
+                          {" "}
+                          Click aca
+                        </Text>
+                      </Block>
+
+
                     </KeyboardAvoidingView>
                   </ScrollView>
                 </Block>
@@ -262,4 +279,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Register;
+export default withNavigation(SignUp);
