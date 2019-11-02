@@ -3,6 +3,7 @@ import { withNavigation } from 'react-navigation';
 
 import {
   StyleSheet,
+  Alert,
   ImageBackground,
   Dimensions,
   StatusBar,
@@ -17,6 +18,15 @@ import { ScrollView } from "react-native-gesture-handler";
 const { width, height } = Dimensions.get("screen");
 
 class SignUp extends React.Component {
+
+  state = {
+    nombre: '',
+    apellido: '',
+    dni: '',
+    email: '',
+    pass: '',
+  };
+
   render() {
 
     const { navigation } = this.props;
@@ -82,6 +92,7 @@ class SignUp extends React.Component {
                         <Input
                           borderless
                           placeholder="Nombre"
+                          onChangeText={ (nombre) => this.setState( {nombre} ) }
                           iconContent={
                             <Icon
                               size={16}
@@ -98,6 +109,7 @@ class SignUp extends React.Component {
                         <Input
                           borderless
                           placeholder="Apellido"
+                          onChangeText={ (apellido) => this.setState( {apellido} ) }
                           iconContent={
                             <Icon
                               size={16}
@@ -115,6 +127,7 @@ class SignUp extends React.Component {
                         <Input
                           borderless
                           placeholder="DNI"
+                          onChangeText={ (dni) => this.setState( {dni} ) }
                           iconContent={
                             <Icon
                               size={16}
@@ -131,6 +144,7 @@ class SignUp extends React.Component {
                         <Input
                           borderless
                           placeholder="Email"
+                          onChangeText={ (email) => this.setState( {email} ) }
                           iconContent={
                             <Icon
                               size={16}
@@ -147,6 +161,7 @@ class SignUp extends React.Component {
                           password
                           borderless
                           placeholder="Password"
+                          onChangeText={ (pass) => this.setState( {pass} ) }
                           viewPass
                           iconContent={
                             <Icon
@@ -191,7 +206,7 @@ class SignUp extends React.Component {
                       </Button>
                       </Block>
                       <Block middle>
-                        <Button color="primary" style={styles.createButton}>
+                        <Button color="primary" style={styles.createButton} onPress={ this.onCreate }>
                           <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                             CREATE ACCOUNT
                         </Text>
@@ -224,6 +239,27 @@ class SignUp extends React.Component {
       </Block>
     );
   }
+
+  onCreate = (navigation) => {
+    if ( (this.state.email !== '') && (this.state.dni !== '') && (this.state.apellido !== '') && (this.state.nombre !== '') && (this.state.pass !== '') ) {
+      var user = {
+        email: this.state.email,
+        pass: this.state.pass,
+        nombre: this.state.nombre,
+        apellido: this.state.apellido,
+        dni: this.state.dni
+      };
+
+      console.log(user);
+
+    } else {
+      
+      Alert.alert('Faltan campos para SignUp');
+
+    }
+
+  }
+
 }
 
 const styles = StyleSheet.create({
