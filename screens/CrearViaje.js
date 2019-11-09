@@ -16,7 +16,7 @@ const viajes = require('../constants/articles.json')
 
 const { width } = Dimensions.get("screen");
 
- 
+
 
 class CrearViaje extends React.Component {
   state = {
@@ -32,16 +32,16 @@ class CrearViaje extends React.Component {
     "switch-2": false,
   };
 
-   crearviaje = (newViaje) => {
+  crearviaje = (newViaje) => {
     API.graphql(graphqlOperation(mutations.createGuriviajes, { input: newViaje })).then(res => {
       console.log(res);
     });
   }
 
-   
 
-   
-  
+
+
+
   setDate = (event, date) => {
     date = date || this.state.date;
 
@@ -69,7 +69,7 @@ class CrearViaje extends React.Component {
   toggleSwitch = switchId =>
     this.setState({ [switchId]: !this.state[switchId] });
 
-  
+
   renderCrearViaje = () => {
 
     const { show, date, mode } = this.state;
@@ -136,6 +136,7 @@ class CrearViaje extends React.Component {
         </Block>
 
         <Block center>
+          
           <Button color="success" style={styles.button} onPress={this.onSave}>
             Guardar Viaje
             </Button>
@@ -153,25 +154,50 @@ class CrearViaje extends React.Component {
     () => navigation.goBack();
   }
 
-  onSave = () => {
-    if ((this.state.dia !== '') || (this.state.mes !== '') || (this.state.anio !== '') || (this.state.destino !== '') || (this.state.origen !== '') || (this.state.duracion !== '') || (this.state.precio !== '') || (this.state.espacios)) {
+
+  onSave = (navigation) => {
+    if ((this.state.dia !== '') && (this.state.mes !== '') && (this.state.anio !== '') && (this.state.destino !== '') && (this.state.origen !== '') && (this.state.duracion !== '') && (this.state.precio !== '') && (this.state.espacios)) {
 
       var viaje = {
-        dia: this.state.dia,
-        mes: this.state.mes,
-        anio: this.state.anio,
-        espacios: this.state.espacios,
-        precio: this.state.precio,
-        origen: this.state.origen,
-        destino: this.state.destino,
-        duracion: this.state.duracion
+        email: Math.random(),
+        autos: "nop",
+        name: "Santiago Esmoris",
+        image: "https://www.buenosaires.gob.ar/sites/gcaba/files/field/image/catedral_a_parque_patricios.jpg",
+
+
+
+        viajes: JSON.stringify([{
+          dia: this.state.dia,
+          mes: this.state.mes,
+          anio: this.state.anio,
+          espacios: this.state.espacios,
+          precio: this.state.precio,
+          origen: this.state.origen,
+          destino: this.state.destino,
+          duracion: this.state.duracion,
+          fecha: "13/12/2019"
+        }])
+
+        // viajes:JSON.stringify([{ dia:"12",
+        //   mes: "2",
+        //   anio: "1997",
+        //   espacios:"2",
+        //   precio: "800", 
+        //   origen: "el palomar",
+        //   destino: "a tu casa",
+        //   duracion: "infiinita"}])
       };
 
-      var viajeJson = JSON.stringify(viaje);
+      var viajeJson = viaje;
 
-      console.log(viajeJson);
 
+
+
+      // console.log(viajeJson);
+
+      this.crearviaje(viajeJson);
       this.props.navigation.goBack();
+
 
 
     }
@@ -179,8 +205,12 @@ class CrearViaje extends React.Component {
       Alert.alert('Faltan campos para crear viaje');
     }
 
-    }
-  
+
+
+  }
+
+
+
   render() {
     return (
       <Block flex center>
@@ -202,7 +232,7 @@ const styles = StyleSheet.create({
   group: {
     paddingTop: theme.SIZES.BASE * 2
   },
-  shadow: {  
+  shadow: {
     shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
@@ -252,4 +282,3 @@ const styles = StyleSheet.create({
 });
 
 export default CrearViaje;
- 
