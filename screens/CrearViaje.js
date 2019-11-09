@@ -136,13 +136,8 @@ class CrearViaje extends React.Component {
         </Block>
 
         <Block center>
-<<<<<<< HEAD
-            <Button color="success" style={styles.button} onPress={()=>this.onSave(navigation)}>
-              Guardar Viaje
-=======
           <Button color="success" style={styles.button} onPress={this.onSave}>
             Guardar Viaje
->>>>>>> 77884619a9454bfa606bf283dd7d53d5be6021b3
             </Button>
         </Block>
 
@@ -154,54 +149,6 @@ class CrearViaje extends React.Component {
   };
 
 
-<<<<<<< HEAD
-
-    
-  
-
-
-  onSave = (navigation) => {
-    if ((this.state.dia !== '') || (this.state.mes !== '') || (this.state.anio !== '') || (this.state.destino !== '') || (this.state.origen !== '') || (this.state.duracion !== '') || (this.state.precio !== '') || (this.state.espacios)){
-
-      var viaje = {email:Math.random(),
-                  autos:"nop",
-                  name:"Santiago Esmoris",
-                  image:"https://www.buenosaires.gob.ar/sites/gcaba/files/field/image/catedral_a_parque_patricios.jpg",
-
-        
-        
-                       viajes:JSON.stringify([{ dia: this.state.dia,
-                          mes: this.state.mes,
-                          anio: this.state.anio,
-                          espacios:this.state.espacios,
-                          precio: this.state.precio, 
-                          origen: this.state.origen,
-                          destino: this.state.destino,
-                          duracion: this.state.duracion,
-                          fecha:"13/12/2019"
-                          }])
-                
-                          // viajes:JSON.stringify([{ dia:"12",
-                          //   mes: "2",
-                          //   anio: "1997",
-                          //   espacios:"2",
-                          //   precio: "800", 
-                          //   origen: "el palomar",
-                          //   destino: "a tu casa",
-                          //   duracion: "infiinita"}])
-      }; 
-  
-      var viajeJson = viaje;
-
-      
- 
-      
-     // console.log(viajeJson);
- 
-     this.crearviaje(viajeJson);
-     navigation.navigate('Home');
-     
-=======
   onCancel = () => {
     () => navigation.goBack();
   }
@@ -231,16 +178,9 @@ class CrearViaje extends React.Component {
     else {
       Alert.alert('Faltan campos para crear viaje');
     }
->>>>>>> 77884619a9454bfa606bf283dd7d53d5be6021b3
 
     }
   
-
-
- }
-
-
-
   render() {
     return (
       <Block flex center>
