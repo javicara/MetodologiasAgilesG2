@@ -1,17 +1,18 @@
 import React from 'react';
 import { withNavigation } from 'react-navigation';
-import { TouchableOpacity, StyleSheet, Platform, Dimensions } from 'react-native';
+import { TouchableOpacity, StyleSheet, Platform, Dimensions, TextInput, View } from 'react-native';
 import { Button, Block, NavBar, Text, theme } from 'galio-framework';
 
 import Icon from './Icon';
 import Input from './Input';
 import Tabs from './Tabs';
 import argonTheme from '../constants/Theme';
+import Filtros from './Filtros';
 
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
 
-const BellButton = ({isWhite, style, navigation}) => (
+const BellButton = ({ isWhite, style, navigation }) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
       family="ArgonExtra"
@@ -23,7 +24,7 @@ const BellButton = ({isWhite, style, navigation}) => (
   </TouchableOpacity>
 );
 //Este es el Add
-const BasketButton = ({isWhite, style, navigation}) => (
+const BasketButton = ({ isWhite, style, navigation }) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.push('CrearViaje')}>
     <Icon
       family="ArgonExtra"
@@ -34,7 +35,7 @@ const BasketButton = ({isWhite, style, navigation}) => (
   </TouchableOpacity>
 );
 
-const SearchButton = ({isWhite, style, navigation}) => (
+const SearchButton = ({ isWhite, style, navigation }) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
       size={16}
@@ -108,17 +109,34 @@ class Header extends React.Component {
   }
   renderSearch = () => {
     const { navigation } = this.props;
-    return (
-      <Input
-        right
-        color="black"
-        style={styles.search}
-        placeholder="A donde desea viajar?"
-        placeholderTextColor={'#8898AA'}
-        onFocus={() => navigation.navigate('Pro')}
-        iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
-      />
-    );
+    var componente;
+    if (navigation.state.routeName == 'Home') {
+      componente =
+        <View>
+          <Input
+            right
+            color="black"
+            style={styles.search}
+            placeholder="A donde desea viajar?"
+            placeholderTextColor={'#8898AA'}
+            onChangeText={navigation.getParam('searchFilterFunction')}
+            iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
+          />
+          <Filtros/>
+        </View>;
+    } else {
+      componente =
+        <Input
+          right
+          color="black"
+          style={styles.search}
+          placeholder="A donde desea viajar?"
+          placeholderTextColor={'#8898AA'}
+          //onFocus={() => console.log(navigation.getParam('viajes'))}
+          iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
+        />;
+    }
+    return (componente);
   }
   renderOptions = () => {
     const { navigation, optionLeft, optionRight } = this.props;
@@ -132,7 +150,7 @@ class Header extends React.Component {
   renderTabs = () => {
     const { tabs, tabIndex, navigation } = this.props;
     const defaultTab = tabs && tabs[0] && tabs[0].id;
-    
+
     if (!tabs) return null;
 
     return (
@@ -178,10 +196,10 @@ class Header extends React.Component {
           right={this.renderRight()}
           rightStyle={{ alignItems: 'center' }}
           left={
-            <Icon 
-              name={back ? 'nav-left' : "menu-8"} family="ArgonExtra" 
-              size={14} onPress={this.handleLeftPress} 
-              color={iconColor || argonTheme.COLORS.ICON}/>
+            <Icon
+              name={back ? 'nav-left' : "menu-8"} family="ArgonExtra"
+              size={14} onPress={this.handleLeftPress}
+              color={iconColor || argonTheme.COLORS.ICON} />
           }
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
           titleStyle={[

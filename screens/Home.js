@@ -53,7 +53,9 @@ const { width } = Dimensions.get('screen');
 class Home extends React.Component {
   state= { 
     viajes:[]
-  } 
+  }
+  // arrayholder para la busqueda
+  arrayHolder = [];
   
   componentDidMount(){
     (function(){
@@ -98,6 +100,7 @@ class Home extends React.Component {
         }))) 
         var merge = [].concat.apply([],lista)
         this.setState({viajes:merge.sortBy(x=>moment(x.fecha).unix()*-1)});
+        this.arrayHolder = this.state.viajes;
 
       }
   });
@@ -127,8 +130,22 @@ class Home extends React.Component {
     var merge = [].concat.apply([],caca)
 
     this.setState({viajes:merge.sortBy(x=>moment(x.fecha).unix()*-1)});
+    this.arrayHolder = this.state.viajes;
+    this.props.navigation.setParams({ searchFilterFunction: this.searchFilterFunction });
   }
     )}
+
+  searchFilterFunction = text => {
+    const newData = this.arrayHolder.filter(item => {
+      const itemData = `${item.destino.toUpperCase()} ${item.origen.toUpperCase()}`
+      
+      const textData = text.toUpperCase();
+      
+      return itemData.indexOf(textData) > -1; 
+    });
+
+    this.setState({ viajes: newData })
+  }
 
 
   renderArticles = () => {
