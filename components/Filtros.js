@@ -13,10 +13,6 @@ import {
   Alert
 } from 'react-native';
 
-import DatePicker from 'react-native-date-picker';
-
-import { Constants } from 'expo';
-
 const SECTIONS = [
   {
     title: 'Busqueda avanzada...',
@@ -91,13 +87,6 @@ class Filtros extends Component {
           value={this.state.fechaDesde}
           maxLength={10}
         />
-        {/* <TextInput
-          style={{ height: 40 }}
-          placeholder="Fecha Hasta"
-          onChangeText={(fechaHasta) => this.setState({ fechaHasta })}
-          value={this.state.fechaHasta}
-          maxLength={10}
-        /> */}
         <TextInput
           style={{ height: 40 }}
           placeholder="Precio"
